@@ -1,0 +1,171 @@
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
+
+public class sec {
+  
+    public static void main(String[] args)throws IOException{
+        File adsFile = new File("adsFile.txt");
+        String ad1 = " ";
+        String ad2 = " ";
+        String ad3 = " ";
+        String ad4 = " ";
+        String ad5 = " ";
+        
+        if(adsFile.exists()){
+            
+            Scanner input = new Scanner(adsFile);
+            ad1 = input.nextLine();
+            ad2 = input.nextLine();
+            ad3 = input.nextLine();
+            ad4 = input.nextLine();
+            ad5 = input.nextLine();        
+            input.close();
+        }          
+        
+        while(true){                        
+            int click1 = home(ad1,ad2,ad3,ad4,ad5);   //calling home method   
+
+            if (click1 == 3 || click1 == JOptionPane.CLOSED_OPTION){   //condition for ending program
+                int quit = JOptionPane.showConfirmDialog(null, "Are you sure to quit?", "Select an option",JOptionPane.YES_NO_OPTION);
+                if(quit == 0){
+                    break;         
+                }
+            }            
+            
+            if(click1 == 2){   //condition for showing about
+                ImageIcon aboutImg = new ImageIcon("abt.jpg");
+                String[] aboutOp = {"Home"}; 
+                JOptionPane.showOptionDialog(null, "\n\n\n\n\n\n                                                                                                      Image StegAnography App                                                        \n"
++ "                                                                                                                             \n"                                                                                           
+                        + "                            This Image Steganography app provides versatile support to hide your secret message behind the image file         \n"
+                                                 + "                                                        Our Secret tool that is used to hide sensitive information in an image file          \n"                                                 
+                                                 + "                                                                                                                             \n\n\n\n\n\n"                                          
+                                                 , "About", 0, JOptionPane.QUESTION_MESSAGE, aboutImg, aboutOp, 0);
+            } 
+            if(click1 == 1){   //condition for starting stegnography process
+                
+              
+                JFrame f=new JFrame("Select an image from given");            //Code for generating frame of images
+                JButton b1=new JButton(new ImageIcon("i1.png"));    
+                JButton b2=new JButton(new ImageIcon("i2.png"));             
+                JButton b3=new JButton(new ImageIcon("i3.jpg"));             
+                JButton b4=new JButton(new ImageIcon("i4.png"));    
+                             
+                b1.setBounds(100,100,180,180);              
+                b2.setBounds(100,200,180,180);
+                b3.setBounds(100,300,150,180);
+                b4.setBounds(100,480,180,180);              
+                
+                f.add(b1);    
+                f.add(b2);    
+                f.add(b3);    
+                f.add(b4);    
+                  
+                f.setSize(880,750);    
+                f.setLayout(null);    
+                f.setVisible(true);                                               
+                                                     //code for generating dialog box for image 
+                JLabel slecImgLab = new JLabel("Enter no of image u want to select :                                                 ");
+                JTextField selectedObF = new JTextField();
+                Object[] slecImgObj = {slecImgLab, selectedObF};
+
+                int click3 = JOptionPane.showConfirmDialog(null, slecImgObj, "Image Selection", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,null);
+                if(click3 == JOptionPane.OK_OPTION){
+                    f.setVisible(false);
+                    String selecImgNo = selectedObF.getText();
+                    
+                    if(selecImgNo.equals("1")){                        
+                        ImageIcon img1 = new ImageIcon("i1.png");
+                        String[] Op = {"OK"}; 
+                        JOptionPane.showOptionDialog(null,"This is the image you slected for steganography","Selected Image", 0, JOptionPane.QUESTION_MESSAGE, img1, Op, 0);
+                    }
+                    if(selecImgNo.equals("2") ){
+                        ImageIcon img2 = new ImageIcon("i2.png");
+                        String[] Op = {"OK"}; 
+                        JOptionPane.showOptionDialog(null,"This is the image you slected for steganography","Selected Image", 0, JOptionPane.QUESTION_MESSAGE, img2, Op, 0);
+                        
+                    }
+                    if(selecImgNo.equals("3") ){
+                        ImageIcon img3 = new ImageIcon("i3.jpg");
+                        String[] Op = {"OK"}; 
+                        JOptionPane.showOptionDialog(null,"This is the image you slected for steganography","Selected Image", 0, JOptionPane.QUESTION_MESSAGE, img3, Op, 0);
+                        
+                    }
+                    if(selecImgNo.equals("4") ){
+                        ImageIcon img4 = new ImageIcon("i4.png");
+                        String[] Op = {"OK"}; 
+                        JOptionPane.showOptionDialog(null,"This is the image you slected for steganography","Selected Image", 0, JOptionPane.QUESTION_MESSAGE, img4, Op, 0);
+                        
+                    }
+                   
+                }
+                if(click3 == JOptionPane.CANCEL_OPTION){
+                    f.setVisible(false);
+                }    
+                if(click3 == JOptionPane.CLOSED_OPTION){
+                    f.setVisible(false);
+                }                
+                       
+            }
+        
+    }
+}
+    
+
+    public static int home(String ad1, String ad2, String ad3, String ad4, String ad5){   //method for showing home page and returing response of first click
+              
+        ImageIcon homeImg = new ImageIcon("Home Img.jpg");        
+        String[] homeOp = {"Profile Managment","Start","About","Quit",};
+        int click1 = JOptionPane.showOptionDialog(null, "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "--------------------------                             "
+                                                      + "  \n|                                                  "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "                
+                                                      + " |\n|                                                  "
+                                                      + "                      Image                                  "
+                                                      + "                                                       "
+                                                      + "                 Steganography                                 "
+                                                      + "                                                       "
+                                                      + "                    |\n|                               "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "                                                       "                
+                                                      + "                    |                  \n--------------"                                                         
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "------------                       \n\n\n\n            "
+                                                      + "                                                       "
+                                                      + "                                                       "
+                                                      + "---------------------------------\n                    "
+                                                      + "                                                       "
+                                                      + "                                              |        "
+                                                      + "         ADS                   |\n                            "
+                                                      + "          ---------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "---\n\n                                         "+ad1+""
+                                                      + "\n\n                                         "+ad2+"   "
+                                                      + "\n\n                                         "+ad3+"   "
+                                                      + "\n\n                                         "+ad4+"   "
+                                                      + "\n\n                                         "+ad5+"   "                                                              
+                                                      + "\n\n                                     --------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "-------------------------------------------------------"
+                                                      + "----------------------------------\n\n\n\n             "
+                                                      , "Home", 0, JOptionPane.QUESTION_MESSAGE, homeImg, homeOp, 0);        
+        
+        return click1;
+    
+    }    
+}
