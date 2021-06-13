@@ -1,9 +1,16 @@
-import javax.swing.*;
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class sec {
-  
+
+public class secImplementation {
     public static void main(String[] args)throws IOException{
         File adsFile = new File("adsFile.txt");
         String ad1 = " ";
@@ -66,12 +73,12 @@ public class sec {
                 f.setLayout(null);    
                 f.setVisible(true);                                               
                                                      //code for generating dialog box for image 
-                JLabel slecImgLab = new JLabel("Enter no of image u want to select :                                                 ");
+                JLabel slecImgLab = new JLabel("Enter no of image you want to select :                                                 ");
                 JTextField selectedObF = new JTextField();
                 Object[] slecImgObj = {slecImgLab, selectedObF};
 
-                int click3 = JOptionPane.showConfirmDialog(null, slecImgObj, "Image Selection", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,null);
-                if(click3 == JOptionPane.OK_OPTION){
+                int click2 = JOptionPane.showConfirmDialog(null, slecImgObj, "Image Selection", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,null);
+                if(click2 == JOptionPane.OK_OPTION){
                     f.setVisible(false);
                     String selecImgNo = selectedObF.getText();
                     
@@ -98,12 +105,51 @@ public class sec {
                         JOptionPane.showOptionDialog(null,"This is the image you slected for steganography","Selected Image", 0, JOptionPane.QUESTION_MESSAGE, img4, Op, 0);
                         
                     }
-                   
+                    //.............................
+                    while(true){
+                        int click3 = setKey();       //calling method for setting key
+                        int click4 = -1;
+                        String settedKey = "";
+                        if(click3 == 0){
+                                ImageIcon setKeyImg = new ImageIcon("Set Key.jpg");                   
+                                JLabel keyLab = new JLabel("Enter Key in numbers:                                                ");
+                                JPasswordField keyF = new JPasswordField();
+                                Object[] aLoginObj = {keyLab, keyF};
+
+                                click4 = JOptionPane.showConfirmDialog(null, aLoginObj, "Setting Low Key", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,setKeyImg);
+                                settedKey = new String(keyF.getPassword());
+                        }
+                        if(click3 == 1){
+                                ImageIcon setKeyImg = new ImageIcon("Set Key.jpg");                   
+                                JLabel keyLab = new JLabel("Enter Key in Alphabets:                                                ");
+                                JPasswordField keyF = new JPasswordField();
+                                Object[] aLoginObj = {keyLab, keyF};
+
+                                click4 = JOptionPane.showConfirmDialog(null, aLoginObj, "Setting Medium Key", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,setKeyImg);
+                                settedKey = new String(keyF.getPassword());
+                        }
+                        if(click3 == 2){
+                                ImageIcon setKeyImg = new ImageIcon("Set Key.jpg");                   
+                                JLabel keyLab = new JLabel("Enter Key Mixed (Numbers & Alphabets):                                                ");
+                                JPasswordField keyF = new JPasswordField();
+                                Object[] aLoginObj = {keyLab, keyF};
+                                
+                                click4 = JOptionPane.showConfirmDialog(null, aLoginObj, "Setting High Key", JOptionPane.OK_CANCEL_OPTION,JOptionPane.DEFAULT_OPTION,setKeyImg);
+                                settedKey = new String(keyF.getPassword());
+                        }          
+                        if(click4 == JOptionPane.OK_OPTION){
+                            ImageIcon setKeyImg = new ImageIcon("Set Key.jpg");                        
+                            String[] Op = {"OK"}; 
+                            JOptionPane.showOptionDialog(null,"You setted "+settedKey+" as key.","Setted Key", 0, JOptionPane.QUESTION_MESSAGE, setKeyImg, Op, 0);                            
+                            break;
+                        }
+                    }
+                    //..............
                 }
-                if(click3 == JOptionPane.CANCEL_OPTION){
+                if(click2 == JOptionPane.CANCEL_OPTION){
                     f.setVisible(false);
                 }    
-                if(click3 == JOptionPane.CLOSED_OPTION){
+                if(click2 == JOptionPane.CLOSED_OPTION){
                     f.setVisible(false);
                 }                
                        
@@ -111,8 +157,18 @@ public class sec {
         
     }
 }
-    
-
+//..............    
+    public static int setKey(){   //method for showing setting key
+        
+                ImageIcon setKeyImg = new ImageIcon("Set Key.jpg");
+                String[] setKeyOp = {"Low","Medium","High"}; 
+                int click3 = JOptionPane.showOptionDialog(null, "\n\n\n\n\n      Select Security Level Of Key:                               \n\n\n\n\n"                                        
+                                                              , "Setting Key", 0, JOptionPane.QUESTION_MESSAGE, setKeyImg, setKeyOp, 0);
+                
+                return click3;
+                
+    }
+ //............
     public static int home(String ad1, String ad2, String ad3, String ad4, String ad5){   //method for showing home page and returing response of first click
               
         ImageIcon homeImg = new ImageIcon("Home Img.jpg");        
@@ -169,3 +225,5 @@ public class sec {
     
     }    
 }
+    
+
